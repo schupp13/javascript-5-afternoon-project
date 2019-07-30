@@ -23,13 +23,14 @@ function outer() {
 */
   
 // Code Here
+const inner = outer();
 
 
 
 //Once you do that, invoke inner.
 
 //Code Here
-
+inner();
 
 
 ////////// PROBLEM 2 //////////
@@ -52,7 +53,8 @@ function callFriend(name) {
 */
 
 //Code Here
-
+const callJake = callFriend('Jake');
+callJake('435-555-9248');
 
 
 ////////// PROBLEM 3 //////////
@@ -63,7 +65,13 @@ function callFriend(name) {
 
 //Code Here
 
+function makeCounter(){
+  let count = 0;
+  return function(){
+    return count +=1;
+  }
 
+}
 
 //Uncomment this once you make your function
 //   var count = makeCounter();
@@ -89,7 +97,12 @@ function counterFactory(value) {
   // Code here.
 
   return {
-
+    inc: function(){
+      return value += 1
+    },
+    dec: function(){
+      return value -=1
+    }
   };
 }
 
@@ -113,14 +126,17 @@ function motivation( firstname, lastname ) {
   var welcomeText = "You're doing awesome, keep it up";
 
   // code message function here.
+  function message (){
+    return `${welcomeText} ${firstname} ${lastname}.`
+  }
 
-  //Uncommment this to return the value of your message function
-  //return message;
+  // Uncommment this to return the value of your message function
+  return message;
 }
 
 var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
 
-
+console.log(greeting());
 
 ////////// PROBLEM 6 //////////
 
@@ -144,10 +160,13 @@ var module = (function() {
   // outside our lexical scope
   return {
     // Code here.
+     publicMethod: function(){
+       return privateMethod()
+     }
   };
 })();
 
-
+module.publicMethod();
 
 ////////// PROBLEM 7 //////////
 
@@ -163,6 +182,12 @@ function secretNumber() {
 
   return {
     // Code here
+    addToSecret: function(value){
+      return secret +=value
+    },
+    takeAwayFromSecret: function(value){
+      return secret -=value
+    }
   };
 }
 
